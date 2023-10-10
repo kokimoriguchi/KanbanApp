@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - "./backend:/usr/src"
+    ports:
+      - "8000:8000"
+    tty: true
+    stdin_open: true
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: npm run serve
+    volumes:
+      - "./frontend/vue:/usr/src"
+    ports:
+      - "8080:8080"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=development
