@@ -1,0 +1,10 @@
+{
+  "cSpell.words": ["vuex"],
+  "eslint.codeActionsOnSave.rules": null,
+  "eslint.nodePath": "",
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ]
+}
