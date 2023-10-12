@@ -1,13 +1,9 @@
-import client from './client';
+import axios from "axios";
 
 export default {
-  login: authInfo => {
-    return new Promise((resolve, reject) => {
-      client.post('http://localhost:8000/auth/login/', authInfo)
-        .then(res => resolve({ token: res.data.token, userId: res.data.userId }))
-        .catch(err => {
-          reject(new Error(err.response.data.message || err.message));
-        });
+  login(email, password) {
+    return axios.get("http://localhost:8000/auth/login/", {
+      params: { email: email, password: password },
     });
   },
 };

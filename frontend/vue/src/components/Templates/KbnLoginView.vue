@@ -1,9 +1,10 @@
 <template>
   <div class="login-view">
     <h1>Kanban App</h1>
-    <KbnLoginForm :onlogin="handleLogin" />
+    <KbnLoginForm />
+    <p>{{ $store.state.auth.token }}</p>
+    <p>{{ $store.state.auth.userId }}</p>
   </div>
-  <p>{{ $store.state.auth.token }}</p>
 </template>
 
 <script>
@@ -16,19 +17,7 @@ export default {
     KbnLoginForm,
   },
 
-  methods: {
-    handleLogin(authInfo) {
-      return this.$store
-        .dispatch("login", authInfo)
-        .then(() => {
-          this.$router.push({ path: "/" });
-        })
-        .catch((err) => this.throwReject(err));
-    },
-    throwReject(err) {
-      return Promise.reject(err);
-    },
-  },
+  methods: {},
 };
 </script>
 

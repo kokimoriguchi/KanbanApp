@@ -1,4 +1,5 @@
 <template>
+  <!-- novalidateはHTML5のデフォルトのバリデーションを無効にする属性 -->
   <form novalidate>
     <div class="form-item">
       <label for="email">Email</label>
@@ -10,12 +11,6 @@
         placeholder="例: kanban@domain.com"
         @focus="resetError"
       />
-      <ul class="validation-errors">
-        <li v-if="!validation.email.format">メールアドレスの形式が不正です</li>
-        <li v-if="!validation.email.required">
-          メールアドレスが入力されていません
-        </li>
-      </ul>
     </div>
     <div class="form-item">
       <label for="password">Password</label>
@@ -27,11 +22,6 @@
         placeholder="例: xxxxxxxxxxx"
         @focus="resetError"
       />
-      <ul class="validation-errors">
-        <li v-if="!validation.password.required">
-          パスワードが入力されていません
-        </li>
-      </ul>
     </div>
     <div class="form-actions">
       <KbnButton :disabled="disabled" @click="handleClick">
@@ -45,10 +35,8 @@
 
 <script>
 import KbnButton from "@/components/Atoms/KbnButton.vue";
-const REGEX_EMAIL =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9{1,3}.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const required = (val) => !!val.trim();
-
+// ここではauth.jsでexportされているオブジェクトをauthApiというエイリアス名でインポートしている。
+import authApi from "@/api/auth.js";
 export default {
   name: "KbnLoginForm",
 
@@ -72,60 +60,16 @@ export default {
     };
   },
 
-  computed: {
-    validation() {
-      return {
-        email: {
-          required: required(this.email),
-          format: REGEX_EMAIL.test(this.email),
-        },
-        password: {
-          required: required(this.password),
-        },
-      };
-    },
-
-    valid() {
-      const validation = this.validation;
-      const fields = Object.keys(validation);
-      let valid = true;
-      for (let i = 0; i < fields.length; i++) {
-        const field = fields[i];
-        valid = Object.keys(validation[field]).every(
-          (key) => validation[field][key]
-        );
-        if (!valid) {
-          break;
-        }
-      }
-      return valid;
-    },
-
-    disabled() {
-      return !this.valid || this.progress;
-    },
-  },
-
   methods: {
-    resetError() {
-      this.error = "";
-    },
-
-    handleClick() {
-      if (this.disableLoginAction) {
-        return;
-      }
+    async handleClick() {
       this.progress = true;
-      this.error = "";
-      this.$nextTick(() => {
-        this.onlogin({ email: this.email, password: this.password })
-          .catch((err) => {
-            this.error = err.message;
-          })
-          .then(() => {
-            this.progress = false;
-          });
-      });
+
+      try {
+        const response = await authApi.login(this.email, this.password); // APIを叩く
+        this.$store.commit("setAuth", response.data); // $store.commitを使用してVuexのmutationをコミット
+      } catch (error) {
+        console.error("API request failed:", error); // エラー処理
+      }
     },
   },
 };
