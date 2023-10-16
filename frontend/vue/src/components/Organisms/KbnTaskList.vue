@@ -44,5 +44,6 @@ export default {
   text-align: center;
   border: 2px solid #000000;
   margin: 6px;
+  border-radius: 10px;
 }
 </style>

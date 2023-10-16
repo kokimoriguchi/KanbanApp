@@ -1,5 +1,8 @@
 <template>
   <div>
+    <KbnTaskDetailModal />
+  </div>
+  <div>
     <KbnBoardNavigation />
   </div>
   <div>
@@ -10,6 +13,7 @@
 <script>
 import KbnBoardNavigation from "@/components/Molecules/KbnBoardNavigation.vue";
 import KbnBoardTask from "@/components/Organisms/KbnBoardTask.vue";
+import KbnTaskDetailModal from "./KbnTaskDetailModal.vue";
 
 export default {
   name: "KbnBoardView",
@@ -17,13 +21,11 @@ export default {
   components: {
     KbnBoardTask,
     KbnBoardNavigation,
-},
+    KbnTaskDetailModal,
+  },
 
   methods: {},
 };
-
 </script>
 
-<style scoped>
-</style>
-
+<style scoped></style>

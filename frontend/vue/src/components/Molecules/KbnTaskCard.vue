@@ -59,20 +59,29 @@ export default {
   border: 2px solid #000000;
   margin: auto;
   margin-bottom: 10px;
+  border-radius: 10px;
+}
+.task-card:hover {
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.5s;
 }
 .new-todo-form {
   width: 90%;
   padding: 10px;
   box-sizing: border-box;
   border: 2px solid #000000;
+  border-radius: 10px;
   margin: auto;
   margin-bottom: 10px;
 }
 .todo-form {
-  width: 80%;
+  width: 85%;
   height: 30px;
   margin: 10px;
   box-sizing: border-box;
+  border: 2px solid #000000;
 }
 .todo-form-button {
   display: flex;
