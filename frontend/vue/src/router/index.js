@@ -4,14 +4,14 @@ import KbnLoginView from "../components/Templates/KbnLoginView.vue";
 import KbnTaskDetailModal from "../components/Templates/KbnTaskDetailModal.vue";
 
 const routes = [
-  { path: "/", component: KbnBoardView, meta: { requiresAuth: true } },
+  { path: "/board", component: KbnBoardView },
   { path: "/login", component: KbnLoginView },
   {
     path: "/tasks/:id",
     component: KbnTaskDetailModal,
     meta: { requiresAuth: true },
   },
-  { path: "/:catchAll(.*)", redirect: "/" },
+  { path: "/:catchAll(.*)", redirect: "/login" },
 ];
 
 const router = createRouter({

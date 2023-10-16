@@ -1,11 +1,6 @@
 <template>
   <!-- :はv-bindの省略形でclassesとdisableの値の変更検知するようにしている -->
-  <button
-    :class="classes"
-    :disabled="disabled"
-    type="button"
-    @click="handleClick"
-  >
+  <button :class="classes" type="button" @click="handleClick">
     <!-- slotで親コンポーネントから渡されたテキストを表示する -->
     <slot />
   </button>
@@ -19,10 +14,6 @@ export default {
     type: {
       type: String,
       default: "button",
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
     },
   },
   computed: {
@@ -44,6 +35,9 @@ export default {
 <style scoped>
 .kbn-button {
   padding: 0.6rem 1.3em;
+  width: 100%;
+  margin-top: 20px;
+  font-family: "Gill Sans", sans-serif;
 }
 .kbn-button-text {
   border: none;

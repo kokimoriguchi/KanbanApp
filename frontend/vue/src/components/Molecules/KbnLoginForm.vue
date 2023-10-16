@@ -24,9 +24,7 @@
       />
     </div>
     <div class="form-actions">
-      <KbnButton :disabled="disabled" @click="handleClick">
-        ログイン
-      </KbnButton>
+      <KbnButton @click="handleClick"> LOGIN </KbnButton>
       <p v-if="progress" class="login-progress">now loading...</p>
       <p v-if="error" class="login-error">{{ error }}</p>
     </div>
@@ -44,13 +42,6 @@ export default {
     KbnButton,
   },
 
-  props: {
-    onlogin: {
-      type: Function,
-      required: true,
-    },
-  },
-
   data() {
     return {
       email: "",
@@ -66,7 +57,12 @@ export default {
 
       try {
         const response = await authApi.login(this.email, this.password); // APIを叩く
-        this.$store.commit("setAuth", response.data); // $store.commitを使用してVuexのmutationをコミット
+        if (response.data && response.data.token && response.data.userId) {
+          this.$store.commit("setAuth", response.data); // $store.commitを使用してVuexのmutationをコミット
+          this.$router.push("/board"); // ログイン後はボードページに遷移
+        } else {
+          console.error("Invalid response data");
+        }
       } catch (error) {
         console.error("API request failed:", error); // エラー処理
       }
@@ -86,6 +82,7 @@ label {
 }
 input {
   width: 100%;
+  height: 32px;
   padding: 0;
   margin: 0.25em 0;
 }

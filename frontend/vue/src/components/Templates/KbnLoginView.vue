@@ -24,6 +24,8 @@ export default {
 <style scoped>
 .login-view {
   width: 320px;
+  padding-top: 8%;
   margin: auto;
+  font-family: "Gill Sans", sans-serif;
 }
 </style>
