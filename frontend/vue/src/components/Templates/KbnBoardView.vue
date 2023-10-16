@@ -1,26 +1,29 @@
 <template>
   <div>
-    <KbnTaskListHeader />
+    <KbnBoardNavigation />
   </div>
-  <div class="board-list">
+  <div>
     <KbnBoardTask />
   </div>
 </template>
 
 <script>
-import KbnTaskListHeader from "@/components/Molecules/KbnTaskListHeader.vue";
+import KbnBoardNavigation from "@/components/Molecules/KbnBoardNavigation.vue";
 import KbnBoardTask from "@/components/Organisms/KbnBoardTask.vue";
 
 export default {
   name: "KbnBoardView",
 
   components: {
-    KbnTaskListHeader,
     KbnBoardTask,
-  },
+    KbnBoardNavigation,
+},
 
   methods: {},
 };
 
 </script>
+
+<style scoped>
+</style>
 
