@@ -1,5 +1,4 @@
 <template>
-  <p>aaa</p>
   <KbnTaskList />
 </template>
 

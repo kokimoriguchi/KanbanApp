@@ -3,19 +3,31 @@
     <div class="header">
       <h1 class="center">KanbanApp</h1>
       <button class="logout-button" @click="logout()">logout</button>
+      <button class="get-tasks" @click="getTasks()">getTasks</button>
     </div>
     <p class="line"></p>
   </div>
 </template>
 
 <script>
+import setTasks from "@/api/auth.js";
 export default {
   methods: {
     logout() {
       this.$router.push('/login');
+    },
+    async getTasks() {
+      try {
+        const response = await setTasks.getTasks();
+        this.$store.commit("setTasks", response.data);
+        console.log(response);
+      } catch (error) {
+        console.error("API request failed:", error);
+      }
     }
   }
 };
+
 </script>
 
 <style scoped>

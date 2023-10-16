@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api.views import login_view
+from api.views import user_index
+from api.views import task_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/login/', login_view, name='login_view')
+    path('auth/login/', login_view, name='login_view'),
+    path('auth/users/', user_index, name='user_index'),
+    path('auth/tasks/', task_index, name='task_index')
 ]
