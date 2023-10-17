@@ -27,8 +27,8 @@ export default {
     KbnTaskCard,
   },
   methods: {
-    openModal() {
-      this.$emit("openModal");
+    openModal(task) {
+      this.$emit("openModal", task);
     },
   },
 };

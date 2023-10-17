@@ -3,7 +3,7 @@
     <p
       v-for="task in filteredTasks"
       :key="task.id"
-      @click="handleOpen"
+      @click="handleOpen(task)"
       class="task-card"
     >
       {{ task.title }}
@@ -27,10 +27,21 @@ export default {
       validator: (value) => ["todo", "doing", "done"].includes(value),
     },
   },
+  data() {
+    return {
+      task: {
+        id: 0,
+        title: "",
+        description: "",
+        doing: false,
+        completed: false,
+      },
+    };
+  },
   methods: {
-    handleOpen() {
+    handleOpen(clickedTask) {
       console.log("handleOpen was called"); // これを追加
-      this.$emit("openModal");
+      this.$emit("openModal", clickedTask);
     },
   },
   computed: {
