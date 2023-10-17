@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <KbnTaskDetailModal />
+  <div v-show="modalShow">
+    <!-- 下記の記述で@closeModal="showModal"は子コンポーネントのcloseModalという名前のイベントが発火した時showModalを発火させる記述 -->
+    <KbnTaskDetailModal @closeModal="showModal" />
   </div>
   <div>
     <KbnBoardNavigation />
   </div>
   <div>
-    <KbnBoardTask />
+    <KbnBoardTask @openModal="showModal" />
   </div>
 </template>
 
@@ -23,8 +24,17 @@ export default {
     KbnBoardNavigation,
     KbnTaskDetailModal,
   },
-
-  methods: {},
+  data() {
+    return {
+      modalShow: false,
+    };
+  },
+  methods: {
+    showModal() {
+      console.log("showModal was called");
+      this.modalShow = !this.modalShow;
+    },
+  },
 };
 </script>
 

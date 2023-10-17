@@ -3,13 +3,11 @@
 </template>
 
 <script>
-import KbnTaskList from '../Organisms/KbnTaskList.vue';
+import KbnTaskList from "../Organisms/KbnTaskList.vue";
 export default {
-  name: 'KbnBoardTask',
+  name: "KbnBoardTask",
   components: {
     KbnTaskList,
   },
-  methods: {},
 };
-
 </script>

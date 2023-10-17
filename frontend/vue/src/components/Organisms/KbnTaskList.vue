@@ -2,15 +2,15 @@
   <div class="task-index">
     <div class="list">
       <KbnTaskListHeader>TODO</KbnTaskListHeader>
-      <KbnTaskCard status="todo" />
+      <KbnTaskCard status="todo" @openModal="openModal" />
     </div>
     <div class="list">
       <KbnTaskListHeader>DOING</KbnTaskListHeader>
-      <KbnTaskCard status="doing" />
+      <KbnTaskCard status="doing" @openModal="openModal" />
     </div>
     <div class="list">
       <KbnTaskListHeader>DONE</KbnTaskListHeader>
-      <KbnTaskCard status="done" />
+      <KbnTaskCard status="done" @openModal="openModal" />
     </div>
   </div>
 </template>
@@ -26,7 +26,11 @@ export default {
     KbnTaskListHeader,
     KbnTaskCard,
   },
-  methods: {},
+  methods: {
+    openModal() {
+      this.$emit("openModal");
+    },
+  },
 };
 </script>
 

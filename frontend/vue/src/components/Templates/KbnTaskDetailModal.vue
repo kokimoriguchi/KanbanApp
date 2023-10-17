@@ -1,6 +1,6 @@
 <template>
-  <div class="container-modal" v-if="modalShow">
-    <div class="wrapper-modal">
+  <div class="container-modal" @click="handleClose">
+    <div class="wrapper-modal" @click.stop>
       <h2>task</h2>
       <p class="text-modal">task description</p>
     </div>
@@ -11,11 +11,9 @@
 <script>
 export default {
   name: "modalWindow",
-  props: {
-    modalShow: {
-      type: Boolean,
-      default: false,
-      required: true,
+  methods: {
+    handleClose() {
+      this.$emit("closeModal");
     },
   },
 };

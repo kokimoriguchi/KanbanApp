@@ -1,15 +1,15 @@
 <template>
   <div>
-    <p v-for="task in filteredTasks" :key="task.id" class="task-card">
+    <p
+      v-for="task in filteredTasks"
+      :key="task.id"
+      @click="handleOpen"
+      class="task-card"
+    >
       {{ task.title }}
     </p>
     <div class="new-todo-form">
-      <input
-        class="todo-form"
-        type="text"
-        placeholder="new task"
-        v-model="title"
-      />
+      <input class="todo-form" type="text" placeholder="new task" />
       <div class="todo-form-button">
         <button class="add-button">add</button>
         <button class="cancel-button">cancel</button>
@@ -25,6 +25,12 @@ export default {
       type: String,
       required: true,
       validator: (value) => ["todo", "doing", "done"].includes(value),
+    },
+  },
+  methods: {
+    handleOpen() {
+      console.log("handleOpen was called"); // これを追加
+      this.$emit("openModal");
     },
   },
   computed: {
