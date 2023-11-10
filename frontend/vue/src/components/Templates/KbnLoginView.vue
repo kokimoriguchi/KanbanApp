@@ -2,8 +2,6 @@
   <div class="login-view">
     <h1>Kanban App</h1>
     <KbnLoginForm />
-    <p>{{ $store.state.auth.token }}</p>
-    <p>{{ $store.state.auth.userId }}</p>
   </div>
 </template>
 
