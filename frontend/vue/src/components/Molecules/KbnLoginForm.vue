@@ -2,6 +2,7 @@
   <!-- novalidateはHTML5のデフォルトのバリデーションを無効にする属性 -->
   <form novalidate>
     <div class="form-item">
+      <p>aaaaaa</p>
       <label for="email">Email</label>
       <input
         id="email"
